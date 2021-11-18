@@ -1,0 +1,11 @@
+<template>
+    <c-custom-button label="Swap" onclick={swapView}></c-custom-button>
+    <c-hello-world></c-hello-world>
+    <div if:true={viewBasics}>
+        <c-lwc-basics></c-lwc-basics>
+        <c-javascript greeting="Wow a Custom Greeting!" number="42"></c-javascript>
+        <!-- <c-lifecycle-hooks></c-lifecycle-hooks> -->
+        <c-shadow-dom></c-shadow-dom>
+    </div>
+    <c-os-data if:false={viewBasics}></c-os-data>
+</template>

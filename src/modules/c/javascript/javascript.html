@@ -1,0 +1,20 @@
+<template>
+    <div class="container">
+        <h1>{greeting}</h1>
+        <p>Your number is: {myNumber}</p>
+        <p>The @track decorator allows this to be possible!</p>
+        <div class="buttons">
+            <c-custom-button label="Clear" onclick={clearList}></c-custom-button>
+            <c-custom-button label="Add Guitarist" onclick={addGuitarist}></c-custom-button>
+            <c-custom-button label="Set To Master" onclick={setToMaster}></c-custom-button>
+        </div>
+        <div class="guitarist-list">
+            <template iterator:it={allGuitarists}>
+                <span class="info-holder" key={it.value.name}>
+                    <p>{it.value.name}</p>
+                    <img src={it.value.image} alt={it.value.name} />
+                </span>
+            </template>
+        </div>
+    </div>
+</template>

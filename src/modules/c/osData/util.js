@@ -47,6 +47,8 @@ let loadList = () => {
 // Reduces the list of all pokemon down to the best match
 let findPokemon = (pokemon) => {
     let isMega = (pokemon.indexOf("-mega") != -1 || pokemon.indexOf("mega ") != -1);
+
+    // If we're looking for a mega, use the mega search
     if (isMega) return findMega(pokemon);
 
     // Pull in the pokemon list from the cache
@@ -143,7 +145,7 @@ let getPrevPokemon = pkmData => {
     return pokeapiCallout(prevName);
 }
 
-// Returns a string with the first letter capitalized
+// Returns a string with the first letter of each word capitalized
 let capitalize = word => {
     word = megaConversion(word);
     let allWords = word.split('-');
@@ -154,6 +156,7 @@ let capitalize = word => {
     return ret.substr(0, ret.length - 1);
 }
 
+// Converts a single word to a capitalized word
 let capitalizeWord = word => {
     let wordBody = word.substring(1);
     return word[0].toUpperCase() + wordBody;
@@ -171,8 +174,10 @@ let megaConversion = word => {
     return megaToKebab(word);
 }
 
+// Converts pokeApi kebab mega name to a normal readable mega name
 let megaFromKebab = word => "mega-" + word.replace("-mega", "");
 
+// Converts a normal readable mega name to a kebab pokeApi name
 let megaToKebab = word => {
     word = word.replace("mega ", "");
     if (word.indexOf(" ") == -1) return word + "-mega";
@@ -180,6 +185,7 @@ let megaToKebab = word => {
     return word.replaceAll(" ", "-");
 }
 
+// pokeApi uses 10000 + as special forms, so convert these to a sequential number
 let mapId = id => {
     if (id > 10000) return 898 + (id - 10000);
     return id;

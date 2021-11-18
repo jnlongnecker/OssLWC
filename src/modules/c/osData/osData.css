@@ -39,7 +39,7 @@ hr {
 
 .pkm-results {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
 }
 
@@ -108,35 +108,8 @@ hr {
     flex-basis: 20vw;
 }
 
-.nav-buttons .button {
+.nav-buttons button {
     min-width: 5rem;
-}
-
-.button {
-    color: var(--theme-red);
-    border: 2px solid var(--theme-red);
-    border-radius: 5px;
-    background: white;
-    font-weight: bold;
-    font-size: 1rem;
-    text-align: center;
-}
-
-.button:hover {
-    color: var(--light-theme-red);
-    background: var(--theme-red);
-    cursor: pointer;
-}
-
-.button:active {
-    background: white;
-    color: var(--theme-red);
-}
-
-.button:focus-visible {
-    outline: 0;
-    border-width: 3px;  
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .Normal {

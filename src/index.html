@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <!--
     Welcome to LWC (Open Source!)
+
+    Lightning Web Components
+    - Use the modern web standard
+    - Frameworks like React, Angular, and Aura are really nice, but can be quite different and abstracts the process
+      - Now, native JS has caught up with these framework features and they aren't necessary
+    - Enter: Web Components
+    - Runs natively in the browser
+    - Can be used without Salesforce at all
+
+    Each component lives inside its own folder. This folder will define the names of the files required in it. These folders
+    also have some requirements to the name:
+    - Must begin with a lowercase letter
+    - Must contain only alphanumeric or underscore characters (no special characters like %, $, ;, \, etc)
+    - Must be unique in the namespace
+    - Can't include whitespace
+    - Can't end in an underscore
+    - Can't contain 2 consectutive underscores
+    - Can't contain a hyphen
+
+    HTML standards require custom elements to contain a hyphen. After all, that's what these components are: custom elements.
+    Our components will always meet this standard because the format for a component is: 
+      namespace-component-name
+    What's that? Our component names cannot contain hyphens you say? Yes, if we use camelCase notation, when we reference the component
+    name it will convert it to kebab-case such as above. Best practice? Only use alphanumeric characters and camelCase your names.
+
+
     In order to start with this, we simply run in the command line: npx create-lwc-app appName
     If this is your first time running this command, it will install create-lwc-app so in the future, you can just make the app
     This will add a folder in your current directory with the name that you give it in the command as well as everything else
@@ -14,24 +40,32 @@
     OS LWC has some features that Platform LWC will never have. The downside is that we cannot work directly with data like we can
     for Platform LWC, and we also do not have access to any prebuilt components (like lightning-button).
 
-    Now for installing and previewing our changes:
-    - We need to install Node.js first
-    - Once that is done, we must update npm: npm install -g npm@latest
-    - Create the project with: npx create-lwc-app appName
-    - This will also install create-lwc-app
-    - In order to preview our build, we need yarn: npm install --global yarn
-    - After, we need nodemon and lwc-services, so run these 2 commands:
+    Required Component Files
+    HTML - A normal HTML file, just put in a template tag to take advantage of components
+    JS - A bit different now, contains a class for our component
+    Optional: CSS - Style declarations for our component
+
+    Now for previewing our changes, we can use 1 of 2 options.
+    1. Use webcomponents.dev/create/lwc
+    2. Use a localhost server with built-in compilation functionality:
+        - We need to install Node.js first
+        - Once that is done, we must update npm: npm install -g npm@latest
+        - Create the project with: npx create-lwc-app appName
+        - This will also install create-lwc-app
+        - In order to preview our build, we need yarn: npm install --global yarn
+        - After, we need nodemon and lwc-services, so run these 2 commands:
         - yarn global add nodemon
         - yarn global add lwc-services
-    NOTE: You may need to configure yourself to run scripts: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-    - Finally, we can run our localhost by using: yarn watch
-    - To kill the command, press Ctrl + C
+        NOTE: You may need to configure yourself to run scripts: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+        NOTE: You may need to download the developer tools that come with Visual Studio (Not VS Code) for some of these commands
+        - Finally, we can run our localhost by using: yarn watch
+        - To kill the command, press Ctrl + C
 -->
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <title>My LWC App</title>
+    <title>Pokedex</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;

@@ -1,0 +1,5 @@
+.special-class {
+    font-weight: bold;
+    color: white;
+    background-color: var(--theme-red);
+}

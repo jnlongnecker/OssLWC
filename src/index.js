@@ -1,7 +1,6 @@
-
 import { createElement } from 'lwc';
-import OsData from 'c/osData';
+import Holder from 'c/holder';
 
-const app = createElement('os-data', { is: OsData });
+const app = createElement('c-holder', { is: Holder });
 // eslint-disable-next-line @lwc/lwc/no-document-query
 document.querySelector('#main').appendChild(app);

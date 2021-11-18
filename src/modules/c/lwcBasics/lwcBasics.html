@@ -1,0 +1,64 @@
+<template>
+  <!-- SHADOW BOUNDARY HERE -->
+
+  <div class="container">
+    <!-- The template tag can be imagined as the bounds of the virtual DOM of the component -->
+    <h1 class="slds-text-heading_large">Basics of Lightning Web Components</h1>
+
+    <!-- Directives are special HTML attributes we can use for some basic but very useful functionality -->
+
+    <!-- if:true|false allows conditional rendering for a truthy or falsey value -->
+    <template if:true={detailsActive}>
+      <p>We can use Directives to conditionally render!</p>
+    </template>
+
+    <!-- These are called Identifiers, and reference properties and methods -->
+    <c-custom-button label={btnLabel} onclick={handleClick}></c-custom-button>
+
+    <p>We can also used Directives to iterate over a list</p>
+
+    <div class="iteration-holder">
+      <ul>
+        <!-- for:each will loop over a collection, and for:item gives a variable for the item. for:index will set your index value -->
+        <template for:each={myGuitarists} for:item="guitarist">
+
+          <!-- Each item must have a key using the key directive. It must be a string/number, and must be unique -->
+          <li class="info-holder" key={guitarist.name}>
+            <div class="info">{guitarist.name}</div>
+            <div class="info"><img src={guitarist.image} /></div>
+          </li>
+        </template>
+      </ul>
+
+      <ul>
+        <p>Using the iterator directive, we can do special functionality on the first and last elements!</p>
+        <!-- The iterator directive works like for:each, but can perform special actions on the first and last value -->
+        <template iterator:myiterator={myGuitarists}>
+          <li key={myiterator.value.name}>
+
+            <!-- Combining the if:true|false directive with the first and last -->
+            <hr if:true={myiterator.first} />
+            {myiterator.value.name}
+            <hr if:true={myiterator.last} />
+          </li>
+        </template>
+      </ul>
+    </div>
+  </div>
+</template>
+<!-- Lets take a moment to speak about the Shadow DOM -->
+<!--
+     The Shadow DOM is a modern design standard that will provide encapsulation for your component. Each component has its own 
+     Shadow DOM, the structure of which is called the shadow tree. The Shadow DOM begins and ends with the shadow boundary.
+     
+     So what happens at the shadow boundary? A few things:
+     - CSS styles stop cascading
+     - Events bubbling up and crossing the boundary will change property values to match the listening scope
+       - This is called event retargeting. The value of Event.target normally holds the element that was the target of the
+         event. For example, if you were to click on a <p> tag, the target would be that <p> tag. If this was not changed,
+         it would bypass the encapsulation of the Shadow DOM. So instead, this property is changed once the event bubbles
+         past the shadow boundary. So instead, the event is retargeted to the first element outside of the shadow boundary
+     - Elements passed via a Slot bypasses the shadow boundary
+     - Elements in the shadow tree cannot be queried for. A component can query for elements in its shadow tree using
+       the this.template.querySelector() method.
+-->

@@ -1,0 +1,5 @@
+@import 'cssLibrary/sample';
+
+h1 {
+    color: blue;
+}
